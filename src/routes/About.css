@@ -1,0 +1,27 @@
+.about--image {
+    width: 400px;
+    border-radius: 10px;
+}
+
+.about--wrapper {
+    margin: 2em 0 5em 0;
+    display: flex;
+    gap: 2em;
+    align-items: center;
+}
+
+.about--text {
+    text-indent: 50px;
+}
+
+.contact--wrapper {
+    display: flex;
+}
+
+.contact--text-area {
+    width: 70%;
+}
+
+.contact--form {
+    margin-right: auto;
+}

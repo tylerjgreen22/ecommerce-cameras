@@ -1,0 +1,33 @@
+export default [{
+    id: 1,
+    name: "DXLR Camera",
+    img: "./src/assets/math-InK0X-GDjrQ-unsplash.jpg",
+    price: 225,
+    desc: "This is a camera",
+    sale: true,
+    bestSeller: true,
+}, {
+    id: 1,
+    name: "DXLR Camera",
+    img: "./src/assets/math-InK0X-GDjrQ-unsplash.jpg",
+    price: 225,
+    desc: "This is a camera",
+    sale: true,
+    bestSeller: true,
+}, {
+    id: 1,
+    name: "DXLR Camera",
+    img: "./src/assets/math-InK0X-GDjrQ-unsplash.jpg",
+    price: 225,
+    desc: "This is a camera",
+    sale: true,
+    bestSeller: true,
+}, {
+    id: 1,
+    name: "DXLR Camera",
+    img: "./src/assets/math-InK0X-GDjrQ-unsplash.jpg",
+    price: 225,
+    desc: "This is a camera",
+    sale: false,
+    bestSeller: false,
+}]

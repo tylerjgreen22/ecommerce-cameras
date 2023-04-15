@@ -1,0 +1,9 @@
+footer {
+    background-color: rgb(128,128,128);
+    color: white;
+}
+
+.content-container[data-type="footer"] {
+    min-height: 0;
+    padding: 2em 0;
+}

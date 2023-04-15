@@ -1,0 +1,31 @@
+header {
+    background-color: #32594A;
+    color: white;
+}
+
+.content-container[data-type="header"] {
+    min-height: 0;
+    padding: 2em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header--profile {
+    font-size: 2rem;
+}
+
+.header--nav > a {
+    font-size: 2rem;
+    color: #FFF5E1;
+    text-decoration: none;
+    margin-right: 1em;
+}
+
+.header--nav > a:hover {
+    opacity: 50%;
+}
+
+.fa-user {
+    color: #FFF5E1;
+}

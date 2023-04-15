@@ -1,0 +1,11 @@
+.products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px
+}
+
+.products--camera {
+    margin-inline: auto;
+    width: 675px;
+    height: 450px;
+}
