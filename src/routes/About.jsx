@@ -9,11 +9,11 @@ function About() {
     <div>
       <Header />
       <div className="content-container">
-        <h2>Who we are</h2>
+        <h2 className="about--title">Who we are</h2>
         <div className="about--wrapper">
           <img className="about--image" src={imageOne} />
           <div className="about--text">
-            <p className="about--text">
+            <p>
               Our main goal is to help get out love of cameras and photography
               out to the world. We are a small team of passionate photographers
               looking to help consumers at home get access to high quality
@@ -40,13 +40,14 @@ function About() {
           </div>
         </div>
 
+        <h2 className="about--title">Contact Us</h2>
         <div className="contact--wrapper">
-          <div className="contact--form">
-            <h2>Contact Us</h2>
+          <div className="contact--form-wrapper">
             <p>Questions? Get in touch with us via the form below</p>
-            <form>
+            <form className="contact--form">
               <input type="text" placeholder="First Name" name="firstName" />
               <input type="text" placeholder="Last Name" name="lastName" />
+              <input type="email" placeholder="Email" name="email" />
               <textarea
                 className="contact--text-area"
                 placeholder="Comments"

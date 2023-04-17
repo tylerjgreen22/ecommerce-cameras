@@ -53,11 +53,13 @@ function Home({ cameras }) {
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           </div>
-          <Carousel className="home--slider">{slideElements}</Carousel>
+          <Carousel className="home--slider">
+            {slideElements && slideElements}
+          </Carousel>
         </section>
         <section className="home--sales">
           <h3 className="home--section-title">Sale Items</h3>
-          <div className="home--products">{saleElements}</div>
+          <div className="home--products">{saleElements && saleElements}</div>
         </section>
       </div>
       <Footer />

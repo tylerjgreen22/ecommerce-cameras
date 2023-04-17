@@ -6,4 +6,22 @@ footer {
 .content-container[data-type="footer"] {
     min-height: 0;
     padding: 2em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer--nav > a {
+    text-decoration: none;
+    color: inherit;
+    margin-inline: 1em;
+}
+
+.footer--link > a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer--link:hover {
+    opacity: 50%;
 }

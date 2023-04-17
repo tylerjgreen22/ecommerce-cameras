@@ -36,8 +36,9 @@
 }
 
 .home--best-sellers-text {
-    margin-top: 3em;
-    width: 50ch;
-    text-indent: 5ch;
-    line-height: 25px;
+    margin-top: 2em;
+    font-size: 20px;
+    width: 42ch;
+    line-height: 24px;
+    text-indent: 50px;
 }
