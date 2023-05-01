@@ -1,24 +1,25 @@
-import "./Footer.css";
 import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer>
-      <div className="content-container" data-type="footer">
-        <div className="footer--link">
-          <Link to="/">Kling-Wolf Camera Co.</Link>
-        </div>
-        <nav className="footer--nav">
+    <footer className="footer-color">
+      <div className="content-container" data-type="header-footer">
+        <Link to="/" className="white text hf-link">
+          Kling-Wolf Camera Co.
+        </Link>
+
+        <nav>
           <a href="https://github.com/tylerjgreen22">
-            <i class="fa-brands fa-github fa-2x"></i>
+            <i className="fa-brands fa-github fa-2x white small-right-spacer"></i>
           </a>
           <a href="https://www.linkedin.com/in/tyler-green-b21767244/">
-            <i class="fa-brands fa-linkedin fa-2x"></i>
+            <i className="fa-brands fa-linkedin fa-2x white"></i>
           </a>
         </nav>
-        <div className="footer--link">
-          <Link to="/about">Contact Us</Link>
-        </div>
+
+        <Link to="/about" className="white text hf-link">
+          Contact Us
+        </Link>
       </div>
     </footer>
   );

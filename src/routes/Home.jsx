@@ -1,19 +1,20 @@
-import "./Home.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import Product from "../components/Product";
 import Carousel from "react-bootstrap/Carousel";
+import { Link, useLoaderData } from "react-router-dom";
+import Product from "../components/Product";
 
-function Home({ cameras }) {
+function Home() {
+  const cameras = useLoaderData();
+
   const saleElements = cameras.map((camera, idx) => {
     if (camera.sale) {
       return (
         <Product
           key={idx}
-          name={camera.name}
+          id={camera.id}
+          name={camera.productname}
           img={camera.img}
           price={camera.price}
-          desc={camera.desc}
+          desc={camera.productdesc}
         />
       );
     }
@@ -22,14 +23,16 @@ function Home({ cameras }) {
   const slideElements = cameras.map((camera, idx) => {
     if (camera.bestSeller) {
       return (
-        <Carousel.Item>
-          <img
-            className="home--slide-img"
-            src={camera.img}
-            alt="best seller slide"
-          />
-          <Carousel.Caption>
-            <h3 className="home--best-seller-slide-title">{`Best Seller: ${camera.name}`}</h3>
+        <Carousel.Item key={idx}>
+          <Link to={`products/${camera.id}`}>
+            <img
+              className="image-large-no-border"
+              src={`http://localhost:3000/assets/${camera.img}`}
+              alt="best seller slide"
+            />
+          </Link>
+          <Carousel.Caption key={idx}>
+            <h3 className="black subtitle-bold">{`Best Seller: ${camera.productname}`}</h3>
           </Carousel.Caption>
         </Carousel.Item>
       );
@@ -37,33 +40,28 @@ function Home({ cameras }) {
   });
 
   return (
-    <div>
-      <Header />
-      <div className="content-container">
-        <section className="home--best-sellers">
-          <div>
-            <h3 className="home--section-title">Best Sellers</h3>
-            <p className="home--best-sellers-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </div>
-          <Carousel className="home--slider">
-            {slideElements && slideElements}
-          </Carousel>
-        </section>
-        <section className="home--sales">
-          <h3 className="home--section-title">Sale Items</h3>
-          <div className="home--products">{saleElements && saleElements}</div>
-        </section>
-      </div>
-      <Footer />
-    </div>
+    <section>
+      <article className="large-bottom-spacer flex">
+        <div>
+          <h3 className="title small-bottom-spacer">Best Sellers</h3>
+          <p className="text-indent">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+        <Carousel className="shadow">{slideElements && slideElements}</Carousel>
+      </article>
+
+      <article>
+        <h3 className="title small-bottom-spacer">Sale Items</h3>
+        <div className="grid">{saleElements && saleElements}</div>
+      </article>
+    </section>
   );
 }
 

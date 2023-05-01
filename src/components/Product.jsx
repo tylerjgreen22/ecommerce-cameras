@@ -1,17 +1,20 @@
-import camera from "../assets/math-InK0X-GDjrQ-unsplash.jpg";
 import "./Product.css";
+import { Link } from "react-router-dom";
+import { imgUrl } from "../api/api";
 
-function Product({ name, img, price, desc }) {
+function Product({ id, name, img, price, desc }) {
   return (
-    <article className="product--card">
-      <img src={img} alt="camera" className="product--image" />
-      <div className="product--body">
-        <div className="product--title-wrapper">
-          <h3 className="product--title">{name}</h3>
-          <span className="product--price">${price}</span>
+    <article className="shadow product--card">
+      <Link to={`/products/${id}`}>
+        <img src={`${imgUrl}/${img}`} alt="camera" className="product--image" />
+        <div className="product--body">
+          <div className="flex-space-between small-bottom-spacer">
+            <h3 className="title-reg">{name}</h3>
+            <span className="subtitle-bold">${price}</span>
+          </div>
+          <p className="small-text product--desc">{desc}</p>
         </div>
-        <p className="product--desc">{desc}</p>
-      </div>
+      </Link>
     </article>
   );
 }
