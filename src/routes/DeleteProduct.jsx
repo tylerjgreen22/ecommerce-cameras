@@ -41,6 +41,7 @@ function DeleteProduct() {
           img={camera.img}
           price={camera.price}
           desc={camera.productdesc}
+          sale={camera.sale}
         />
       </div>
     );

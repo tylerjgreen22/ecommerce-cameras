@@ -4,15 +4,16 @@ import logo from "../assets/logo2.png";
 function Header() {
   const user = localStorage.getItem("user");
   const navigate = useNavigate();
+  const cart = JSON.parse(localStorage.getItem("cart")).length;
 
   return (
     <header className="main-background-color">
       <div className="content-container" data-type="header-footer">
         <Link to={"/"}>
-          <img src={logo} />
+          <img className="image" src={logo} />
         </Link>
 
-        <nav className="accent-color ">
+        <nav className="nav accent-color ">
           <NavLink
             to={"about"}
             className={({ isActive }) =>
@@ -32,6 +33,16 @@ function Header() {
             }
           >
             Products
+          </NavLink>
+          <NavLink
+            to={"checkout"}
+            className={({ isActive }) =>
+              isActive
+                ? "title-reg accent-color small-right-spacer hf-link-active"
+                : "title-reg accent-color small-right-spacer hf-link"
+            }
+          >
+            Checkout {cart ? `(${cart})` : ""}
           </NavLink>
         </nav>
 

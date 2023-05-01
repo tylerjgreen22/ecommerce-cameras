@@ -50,9 +50,7 @@ function UpdateProduct() {
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formInfo.file
-      ? formData.append("file", formInfo.file)
-      : console.log("test");
+    formInfo.file ? formData.append("file", formInfo.file) : null;
     formData.append("productname", formInfo.productname);
     formData.append("price", formInfo.price);
     formData.append("category", formInfo.category);
@@ -61,7 +59,7 @@ function UpdateProduct() {
     formData.append("bestSeller", formInfo.bestSeller ? 1 : 0);
     formData.append("img", formInfo.file ? formInfo.file.name : formInfo.img);
 
-    updateProduct(camera.id, formData);
+    await updateProduct(camera.id, formData);
 
     navigate("/update");
   };

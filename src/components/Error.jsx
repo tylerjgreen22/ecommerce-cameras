@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 
 function Error() {
+  const error = useRouteError();
+
   return (
     <section>
       <h2 className="title bottom-spacer">

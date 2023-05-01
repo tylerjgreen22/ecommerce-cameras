@@ -22,7 +22,8 @@ import { getProducts } from "../api/api";
 import { loader as productLoader } from "../routes/ProductPage";
 import Error from "./Error";
 import Edit, { loader as editLoader } from "../routes/Edit";
-import Checkout from "../routes/Checkout";
+import Checkout, { loader as checkoutLoader } from "../routes/Checkout";
+import PageError from "./PageError";
 
 function productsLoader() {
   return getProducts();
@@ -31,28 +32,50 @@ function productsLoader() {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route index element={<Home />} loader={productsLoader} />
+      <Route
+        index
+        element={<Home />}
+        loader={productsLoader}
+        errorElement={<PageError />}
+      />
       <Route path="about" element={<About />} />
-      <Route path="products" element={<Products />} loader={productsLoader} />
+      <Route
+        path="products"
+        element={<Products />}
+        loader={productsLoader}
+        errorElement={<PageError />}
+      />
       <Route
         path="products/:id"
         element={<ProductPage />}
         loader={({ params }) => {
           return productLoader(params.id);
         }}
+        errorElement={<PageError />}
       />
-      <Route path="dashboard" element={<Dashboard />} loader={loginLoader} />
+      <Route
+        path="dashboard"
+        element={<Dashboard />}
+        loader={loginLoader}
+        errorElement={<PageError />}
+      />
       <Route
         path="add"
         element={<AddProduct />}
         loader={addLoader}
-        errorElement={<h2>Forbidden</h2>}
+        errorElement={<PageError />}
       />
-      <Route path="delete" element={<DeleteProduct />} loader={deleteLoader} />
+      <Route
+        path="delete"
+        element={<DeleteProduct />}
+        loader={deleteLoader}
+        errorElement={<PageError />}
+      />
       <Route
         path="update"
         element={<UpdateProducts />}
         loader={updateLoaderOne}
+        errorElement={<PageError />}
       />
       <Route
         path="update/:id"
@@ -60,11 +83,31 @@ const router = createBrowserRouter(
         loader={({ params }) => {
           return updateLoader(params.id);
         }}
+        errorElement={<PageError />}
       />
-      <Route path="login" element={<Login />} loader={loggedinLoader} />
-      <Route path="register" element={<Register />} />
-      <Route path="edit" element={<Edit />} loader={editLoader} />
-      <Route path="checkout" element={<Checkout />} loader={productsLoader} />
+      <Route
+        path="login"
+        element={<Login />}
+        loader={loggedinLoader}
+        errorElement={<PageError />}
+      />
+      <Route
+        path="register"
+        element={<Register />}
+        errorElement={<PageError />}
+      />
+      <Route
+        path="edit"
+        element={<Edit />}
+        loader={editLoader}
+        errorElement={<PageError />}
+      />
+      <Route
+        path="checkout"
+        element={<Checkout />}
+        loader={checkoutLoader}
+        errorElement={<PageError />}
+      />
       <Route path="*" element={<Error />} />
     </Route>
   )

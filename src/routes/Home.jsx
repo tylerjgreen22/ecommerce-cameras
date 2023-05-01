@@ -15,6 +15,7 @@ function Home() {
           img={camera.img}
           price={camera.price}
           desc={camera.productdesc}
+          sale={camera.sale}
         />
       );
     }
@@ -41,7 +42,7 @@ function Home() {
 
   return (
     <section>
-      <article className="large-bottom-spacer flex">
+      <article className="flex large-bottom-spacer">
         <div>
           <h3 className="title small-bottom-spacer">Best Sellers</h3>
           <p className="text-indent">
