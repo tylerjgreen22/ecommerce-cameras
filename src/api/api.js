@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const url = "http://localhost:3000/api/v1";
-export const imgUrl = "http://localhost:3000/assets"
+const url = "http://localhost:3001/api/v1";
+export const imgUrl = "http://localhost:3001/assets"
 
 export async function getProducts() {
     try {
@@ -145,6 +145,24 @@ export async function editUser(id, formData) {
             return res;
         }
 
+    } catch (error) {
+        throw error
+    }
+}
+
+export async function getOrder(id) {
+    try {
+        const res = await axios.get(`${url}/orders/${id}`);
+        return res.data;
+    } catch (error) {
+        throw error
+    }
+}
+
+export async function addOrder(order) {
+    try {
+        const res = await axios.post(`${url}/orders`, order);
+        return res;
     } catch (error) {
         throw error
     }

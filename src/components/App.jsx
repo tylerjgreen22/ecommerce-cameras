@@ -17,13 +17,14 @@ import UpdateProducts, {
 import UpdateProduct, { loader as updateLoader } from "../routes/UpdateProduct";
 import Login, { loader as loggedinLoader } from "../routes/Login";
 import Register from "../routes/Register";
-import Layout from "./Layout";
-import { getProducts } from "../api/api";
 import { loader as productLoader } from "../routes/ProductPage";
-import Error from "./Error";
 import Edit, { loader as editLoader } from "../routes/Edit";
 import Checkout, { loader as checkoutLoader } from "../routes/Checkout";
+import Confirmation from "../routes/Confirmation";
+import Layout from "./Layout";
+import Error from "./Error";
 import PageError from "./PageError";
+import { getProducts } from "../api/api";
 
 function productsLoader() {
   return getProducts();
@@ -106,6 +107,11 @@ const router = createBrowserRouter(
         path="checkout"
         element={<Checkout />}
         loader={checkoutLoader}
+        errorElement={<PageError />}
+      />
+      <Route
+        path="confirmation/:id"
+        element={<Confirmation />}
         errorElement={<PageError />}
       />
       <Route path="*" element={<Error />} />

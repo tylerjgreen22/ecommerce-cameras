@@ -16,8 +16,8 @@ function DeleteProduct() {
   const navigate = useNavigate();
   const cameras = useLoaderData();
 
-  function handleDelete(id) {
-    deleteProduct(id);
+  async function handleDelete(id) {
+    await deleteProduct(id);
     navigate("/delete");
   }
 

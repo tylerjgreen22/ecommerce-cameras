@@ -1,6 +1,6 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Product from "../components/Product";
-import { getProduct, getProducts } from "../api/api";
+import { getProduct, getProducts, imgUrl } from "../api/api";
 import { useState } from "react";
 
 export async function loader(id) {
@@ -50,6 +50,11 @@ function ProductPage() {
 
   return (
     <section>
+      <div className=" large-bottom-spacer">
+        <Link className="link" to="/products">
+          Back to Products
+        </Link>
+      </div>
       <article className="flex large-bottom-spacer">
         <div>
           <h2 className="title small-bottom-spacer">{camera.productname}</h2>
@@ -85,10 +90,7 @@ function ProductPage() {
             </button>
           </div>
         </div>
-        <img
-          className="image-large shadow"
-          src={`http://localhost:3000/assets/${camera.img}`}
-        />
+        <img className="image-large shadow" src={`${imgUrl}/${camera.img}`} />
       </article>
 
       <article>

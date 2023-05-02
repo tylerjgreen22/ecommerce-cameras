@@ -4,7 +4,12 @@ import logo from "../assets/logo2.png";
 function Header() {
   const user = localStorage.getItem("user");
   const navigate = useNavigate();
-  const cart = JSON.parse(localStorage.getItem("cart")).length;
+  const cart = JSON.parse(localStorage.getItem("cart"));
+  let cartLength = 0;
+
+  if (cart) {
+    cartLength = cart.length;
+  }
 
   return (
     <header className="main-background-color">
@@ -42,7 +47,7 @@ function Header() {
                 : "title-reg accent-color small-right-spacer hf-link"
             }
           >
-            Checkout {cart ? `(${cart})` : ""}
+            Checkout {cartLength ? `(${cart.length})` : ""}
           </NavLink>
         </nav>
 
@@ -59,7 +64,7 @@ function Header() {
                 : "title-reg accent-color hf-link"
             }
           >
-            Login/Signup
+            Login
           </NavLink>
         )}
       </div>

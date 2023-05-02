@@ -1,5 +1,5 @@
 import { useLoaderData, useNavigate, Link } from "react-router-dom";
-import { getProduct, getUser } from "../api/api";
+import { getProduct, getUser, addOrder } from "../api/api";
 import Product from "../components/Product";
 import { useState } from "react";
 
@@ -8,19 +8,22 @@ export async function loader() {
   const userData = localStorage.getItem("user");
   const checkoutProducts = [];
   let total = 0;
-  for (let i = 0; i < cart.length; i++) {
-    const product = await getProduct(cart[i]);
-    checkoutProducts.push(product);
-    product[0].sale
-      ? (total += product[0].price * 0.75)
-      : (total += product[0].price);
+  if (cart) {
+    for (let i = 0; i < cart.length; i++) {
+      const product = await getProduct(cart[i]);
+      checkoutProducts.push(product);
+      product[0].sale
+        ? (total += product[0].price * 0.75)
+        : (total += product[0].price);
+    }
+    if (userData) {
+      const res = await getUser(userData);
+      return [checkoutProducts, res.data, total];
+    }
+    return [checkoutProducts, total];
+  } else {
+    return [checkoutProducts, total];
   }
-  if (userData) {
-    const res = await getUser(userData);
-    return [checkoutProducts, res.data, total];
-  }
-
-  return [checkoutProducts, total];
 }
 
 function Checkout() {
@@ -86,11 +89,28 @@ function Checkout() {
     });
   }
 
-  function handleSubmit() {}
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const orderId = Math.floor(Math.random() * 123456);
+    const userId = user ? user.id : null;
+    const address = `${formData.street} ${formData.city} ${formData.zip} ${formData.state}`;
+    const date = new Date().toISOString().split("T")[0];
+    await checkoutProducts.forEach((product) => {
+      addOrder({
+        orderid: orderId,
+        userid: userId,
+        productid: product[0].id,
+        orderdate: date,
+        address: address,
+      });
+    });
+
+    localStorage.removeItem("cart");
+    navigate(`/confirmation/${orderId}`);
+  }
 
   function handleRemove(id) {
     const cart = JSON.parse(localStorage.getItem("cart"));
-    // const cartFilter = cart.filter((product) => product !== id);
     cart.splice(cart.indexOf(id), 1);
     localStorage.setItem("cart", JSON.stringify(cart));
     navigate("/checkout");

@@ -1,6 +1,7 @@
 import Carousel from "react-bootstrap/Carousel";
 import { Link, useLoaderData } from "react-router-dom";
 import Product from "../components/Product";
+import { imgUrl } from "../api/api";
 
 function Home() {
   const cameras = useLoaderData();
@@ -28,7 +29,7 @@ function Home() {
           <Link to={`products/${camera.id}`}>
             <img
               className="image-large-no-border"
-              src={`http://localhost:3000/assets/${camera.img}`}
+              src={`${imgUrl}/${camera.img}`}
               alt="best seller slide"
             />
           </Link>

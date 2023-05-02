@@ -1,11 +1,18 @@
 import { Link, redirect, useLoaderData, useNavigate } from "react-router-dom";
-import { getUser } from "../api/api";
+import { getUser, getOrder, getProduct } from "../api/api";
+import Product from "../components/Product";
 
 export async function loader() {
   const userData = localStorage.getItem("user");
   if (userData) {
     const res = await getUser(userData);
-    return res.data;
+    const orderData = await getOrder(res.data.id);
+    const orderProducts = [];
+    for (let i = 0; i < orderData.length; i++) {
+      const product = await getProduct(orderData[i].productid);
+      orderProducts.push(product);
+    }
+    return [res.data, orderData, orderProducts];
   } else {
     return redirect("/login");
   }
@@ -13,7 +20,47 @@ export async function loader() {
 
 function Dashboard() {
   const navigate = useNavigate();
-  const user = useLoaderData();
+  const user = useLoaderData()[0];
+  const orders = useLoaderData()[1];
+  const orderProducts = useLoaderData()[2];
+
+  const groupedOrders = orders.reduce((r, a) => {
+    r[a.orderid] = r[a.orderid] || [];
+    r[a.orderid].push(a);
+    return r;
+  }, []);
+
+  const orderElements = groupedOrders.map((orders, idx) => {
+    return (
+      <div className="bottom-spacer" key={idx}>
+        <h3 className="subtitle small-bottom-spacer">
+          Order ID: {orders[0].orderid}
+        </h3>
+        <h3 className="subtitle small-bottom-spacer">
+          Date: {orders[0].orderdate.split("T")[0]}
+        </h3>
+        <div className="grid">
+          {orders.map((order, idx) => {
+            const product = orderProducts.find(
+              (prod) => prod[0].id === order.productid
+            );
+
+            return (
+              <Product
+                key={idx}
+                id={product[0].id}
+                name={product[0].productname}
+                img={product[0].img}
+                price={product[0].price}
+                desc={product[0].productdesc}
+                sale={product[0].sale}
+              ></Product>
+            );
+          })}
+        </div>
+      </div>
+    );
+  });
 
   return (
     <section>
@@ -51,6 +98,11 @@ function Dashboard() {
           </div>
         </article>
       )}
+
+      <article>
+        <h2 className="title small-bottom-spacer">Your Orders</h2>
+        {orderElements}
+      </article>
 
       <button
         className="button"
