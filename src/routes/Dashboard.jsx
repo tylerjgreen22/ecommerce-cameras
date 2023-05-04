@@ -82,7 +82,7 @@ function Dashboard() {
         </div>
       </article>
 
-      {user.isModerator && (
+      {user.isModerator ? (
         <article className="dashboard--moderator">
           <h3 className="subtitle small-bottom-spacer">Moderator Menu</h3>
           <div className="flex-small bottom-spacer">
@@ -97,7 +97,7 @@ function Dashboard() {
             </Link>
           </div>
         </article>
-      )}
+      ) : null}
 
       <article>
         <h2 className="title small-bottom-spacer">Your Orders</h2>

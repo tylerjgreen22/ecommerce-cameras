@@ -1,5 +1,6 @@
 .product--card {
   max-width: 350px;
+  min-height: 400px;
   height: fit-content;
   background-color: rgb(250, 250, 250);
   border-radius: 10px;

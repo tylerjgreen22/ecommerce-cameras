@@ -167,3 +167,12 @@ export async function addOrder(order) {
         throw error
     }
 }
+
+export async function sendEmail(formData) {
+    try {
+        const res = await axios.post(`${url}/email`, formData);
+        return res;
+    } catch (error) {
+        throw error
+    }
+}
